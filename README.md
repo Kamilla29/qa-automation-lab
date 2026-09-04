@@ -4,7 +4,11 @@
 
 This repository is designed as an independent QA portfolio project rather than tests hidden inside the application repository. It demonstrates test architecture, risk-based coverage, UI automation, API contract testing, accessibility checks, diagnostic artifacts and CI design around a real companion project.
 
-> Target product: [`Kamilla29/loanflow-web`](https://github.com/Kamilla29/loanflow-web). The tested baseline is pinned in `target-revision.json`, so every regression run maps to the exact final LoanFlow revision under test.
+> Target product: [`Kamilla29/loanflow-web`](https://github.com/Kamilla29/loanflow-web). The tested baseline is pinned in `target-revision.json`, so every regression run maps to the exact LoanFlow revision under test.
+
+## Verified outcome
+
+The final regression baseline is LoanFlow `12c428a`. During release hardening, this QA project surfaced real product defects rather than presentation-only examples, including two WCAG AA contrast failures and an application-flow race that could submit the form before explicit confirmation on the Review step. The fixes were made in LoanFlow and then independently re-verified here across Chromium, Firefox, mobile Chrome, API contracts and Axe accessibility checks.
 
 ## What this project demonstrates
 
