@@ -33,4 +33,4 @@ Axe automation blocks serious/critical automatically detectable violations on re
 
 ## CI policy
 
-Pull requests should run Chromium UI tests, API tests, accessibility smoke checks and static type checking. Full cross-browser regression can run on main or on demand. Traces, screenshots and videos are retained only on failure to keep diagnostics useful without creating unnecessary artifacts.
+Pull requests and `main` run the pinned target through static checks, Chromium and Firefox browser regression, mobile Chrome emulation, API contract tests and accessibility smoke checks. Traces, screenshots and videos are retained only on failure to keep diagnostics useful without creating unnecessary artifacts.

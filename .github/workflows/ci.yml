@@ -1,0 +1,68 @@
+name: QA regression
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout QA repository
+        uses: actions/checkout@v7
+
+      - name: Read target revision
+        id: target
+        shell: bash
+        run: |
+          echo "repo=$(node -p \"require('./target-revision.json').repository\")" >> "$GITHUB_OUTPUT"
+          echo "ref=$(node -p \"require('./target-revision.json').ref\")" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout pinned LoanFlow target
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ steps.target.outputs.repo }}
+          ref: ${{ steps.target.outputs.ref }}
+          path: target/loanflow-web
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Install QA dependencies
+        run: npm install
+
+      - name: Install target dependencies
+        run: npm install
+        working-directory: target/loanflow-web
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium firefox
+
+      - name: Static checks
+        run: npm run check
+
+      - name: Build target
+        run: npm run build
+        working-directory: target/loanflow-web
+
+      - name: Start target and contract server
+        shell: bash
+        run: |
+          (cd target/loanflow-web && npm run preview > /tmp/loanflow-preview.log 2>&1 &)
+          (node test-support/mock-api-server.mjs > /tmp/mock-api.log 2>&1 &)
+          npx wait-on http://127.0.0.1:4300 http://127.0.0.1:4400/health
+
+      - name: Run browser, API and accessibility regression
+        run: npx playwright test --project=chromium --project=firefox --project=mobile-chrome --project=api
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
