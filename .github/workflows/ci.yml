@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: qa-regression-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   playwright:
     runs-on: ubuntu-latest
@@ -42,7 +46,7 @@ jobs:
         working-directory: target/loanflow-web
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium firefox
+        run: npx playwright install chromium firefox
 
       - name: Static checks
         run: npm run check
