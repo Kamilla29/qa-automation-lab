@@ -47,6 +47,6 @@ export class ApplicationPage {
 
   async submit() {
     await expect(this.submitButton).toBeEnabled();
-    await this.submitButton.click({ force: true });
+    await this.submitButton.click();
   }
 }
