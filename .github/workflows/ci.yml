@@ -54,9 +54,18 @@ jobs:
       - name: Start target and contract server
         shell: bash
         run: |
-          (cd target/loanflow-web && npm run preview > /tmp/loanflow-preview.log 2>&1 &)
-          (node test-support/mock-api-server.mjs > /tmp/mock-api.log 2>&1 &)
-          npx wait-on http://127.0.0.1:4300 http://127.0.0.1:4400/health
+          pushd target/loanflow-web
+          npm run preview > /tmp/loanflow-preview.log 2>&1 &
+          popd
+          node test-support/mock-api-server.mjs > /tmp/mock-api.log 2>&1 &
+
+          if ! npx wait-on --timeout 60000 tcp:127.0.0.1:4300 http://127.0.0.1:4400/health; then
+            echo "--- LoanFlow preview log ---"
+            cat /tmp/loanflow-preview.log || true
+            echo "--- Mock API log ---"
+            cat /tmp/mock-api.log || true
+            exit 1
+          fi
 
       - name: Run browser, API and accessibility regression
         run: npx playwright test --project=chromium --project=firefox --project=mobile-chrome --project=api
