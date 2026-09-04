@@ -59,7 +59,7 @@ jobs:
           popd
           node test-support/mock-api-server.mjs > /tmp/mock-api.log 2>&1 &
 
-          if ! npx wait-on --timeout 60000 tcp:127.0.0.1:4300 http://127.0.0.1:4400/health; then
+          if ! npx wait-on --timeout 60000 tcp:127.0.0.1:4300 tcp:127.0.0.1:4400; then
             echo "--- LoanFlow preview log ---"
             cat /tmp/loanflow-preview.log || true
             echo "--- Mock API log ---"
