@@ -17,8 +17,10 @@ jobs:
         id: target
         shell: bash
         run: |
-          echo "repo=$(node -p \"require('./target-revision.json').repository\")" >> "$GITHUB_OUTPUT"
-          echo "ref=$(node -p \"require('./target-revision.json').ref\")" >> "$GITHUB_OUTPUT"
+          repo=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('target-revision.json', 'utf8')).repository)")
+          ref=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync('target-revision.json', 'utf8')).ref)")
+          echo "repo=$repo" >> "$GITHUB_OUTPUT"
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
 
       - name: Checkout pinned LoanFlow target
         uses: actions/checkout@v7
