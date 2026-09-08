@@ -1,5 +1,7 @@
 # QA Automation Lab
 
+[![QA regression](https://github.com/Kamilla29/qa-automation-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Kamilla29/qa-automation-lab/actions/workflows/ci.yml)
+
 **Playwright + TypeScript quality engineering project for LoanFlow.**
 
 This repository is designed as an independent QA portfolio project rather than tests hidden inside the application repository. It demonstrates test architecture, risk-based coverage, UI automation, API contract testing, accessibility checks, diagnostic artifacts and CI design around a real companion project.
