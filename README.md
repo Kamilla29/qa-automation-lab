@@ -106,4 +106,4 @@ The bug reports document defects actually encountered while hardening LoanFlow. 
 ---
 
 **Kamilla Kuanysheva**  
-React Developer · TypeScript · QA Automation
+React Developer · TypeScript · Frontend Engineering
