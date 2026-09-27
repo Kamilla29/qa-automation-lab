@@ -37,7 +37,8 @@ tests/ui/              browser E2E/regression tests
 tests/api/             HTTP contract tests
 tests/accessibility/   automated accessibility smoke tests
 test-support/          deterministic mock application API
-docs/                  strategy, cases, traceability, bugs, a11y checklist
+support-case/          SQLite schema, seed data and diagnostic SQL
+docs/                  strategy, cases, traceability, bugs, support case, a11y checklist
 .github/workflows/     CI regression pipeline
 target-revision.json   exact LoanFlow revision under test
 ```
