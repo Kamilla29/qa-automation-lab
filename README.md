@@ -64,6 +64,20 @@ target-revision.json   exact LoanFlow revision under test
 ### Accessibility
 Representative home, form and component-showcase pages are scanned for serious/critical Axe violations. Manual checks remain documented because automated accessibility testing cannot prove WCAG conformance by itself.
 
+## Application support / SQL diagnostic case
+
+This repository also includes a small, reproducible [application-support case](docs/application-support-case.md) focused on a stale application-status incident.
+
+It demonstrates:
+
+- SQL investigation across an aggregate table and status-event history;
+- joins and window functions for latest-state analysis;
+- incident scoping and consistency checks;
+- API/data-flow reasoning and root-cause analysis;
+- remediation and regression-verification planning.
+
+The case is explicitly documented as a **portfolio diagnostic exercise**, not as commercial production experience. SQLite-compatible files are available under [`support-case/`](support-case/).
+
 ## Run against LoanFlow
 
 Install dependencies and Playwright browsers:
@@ -106,4 +120,4 @@ The bug reports document defects actually encountered while hardening LoanFlow. 
 ---
 
 **Kamilla Kuanysheva**  
-React Developer · TypeScript · Frontend Engineering
+Junior Software Developer · Frontend · APIs · Testing & Integration
