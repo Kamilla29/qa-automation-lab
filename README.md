@@ -2,11 +2,19 @@
 
 [![QA regression](https://github.com/Kamilla29/qa-automation-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/Kamilla29/qa-automation-lab/actions/workflows/ci.yml)
 
-**Playwright + TypeScript quality engineering project for LoanFlow.**
+**Playwright + TypeScript quality, troubleshooting and application-support portfolio project for LoanFlow.**
 
-This repository is designed as an independent QA portfolio project rather than tests hidden inside the application repository. It demonstrates test architecture, risk-based coverage, UI automation, API contract testing, accessibility checks, diagnostic artifacts and CI design around a real companion project.
+The repository combines browser automation, API contract testing, accessibility checks, diagnostic artifacts, CI and a reproducible SQL investigation. It is intentionally separate from the application repository so its test strategy and evidence can be reviewed independently.
 
 > Target product: [`Kamilla29/loanflow-web`](https://github.com/Kamilla29/loanflow-web). The tested baseline is pinned in `target-revision.json`, so every regression run maps to the exact LoanFlow revision under test.
+
+## Recruiter snapshot
+
+- **Automation:** Playwright + TypeScript with Page Objects, fixtures and cross-browser/mobile coverage.
+- **API quality:** HTTP contract testing, negative scenarios and deterministic test data.
+- **Troubleshooting:** traces, screenshots, failure diagnostics and documented bug reports.
+- **Application support:** SQLite/SQL diagnostic case with joins, window functions, incident scoping and RCA.
+- **Role relevance:** QA Automation, Junior Software, Application Support and technical troubleshooting roles.
 
 ## Verified outcome
 
